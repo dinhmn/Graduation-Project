@@ -35,9 +35,4 @@ public class CategoryEntity extends BaseEntity implements Serializable {
 
   @Column(name = "seo")
   private String seo;
-
-  @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-  @EqualsAndHashCode.Exclude // không sử dụng trường này trong equals và hashcode
-  @ToString.Exclude // Khoonhg sử dụng trong toString()
-  private List<ProductEntity> productList;
 }

@@ -47,9 +47,6 @@ public class ProductEntity extends BaseEntity implements Serializable {
   @Column(name = "seo")
   private String seo;
 
-  @ManyToOne
-  @JoinColumn(name = "category_id") // thông qua khóa ngoại address_id
-  @EqualsAndHashCode.Exclude
-  @ToString.Exclude
-  private CategoryEntity category;
+  @Column(name = "category_id", nullable = false)
+  private Long categoryId;
 }
