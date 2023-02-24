@@ -1,15 +1,14 @@
 package com.app.api.web.appapi.entity;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import java.util.Date;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.NaturalIdCache;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@NaturalIdCache
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class BaseEntity {
 
   @Column(name = "status", nullable = true)
