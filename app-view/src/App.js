@@ -2,11 +2,13 @@ import { Route, Routes } from 'react-router-dom';
 import Nav from './common/Nav';
 import NavAddress from './common/NavAddress';
 import HomePage from './user/view/HomePage';
+import SignIn from './user/view/SignIn';
+import SignUp from './user/view/SignUp';
 
 function App() {
   return (
     <div>
-      <NavAddress className="bg-opacity-60 bg-slate-700 text-br"></NavAddress>
+            <NavAddress className="bg-opacity-60 bg-slate-700 text-br"></NavAddress>
       <Nav></Nav>
       <Routes>
         <Route path="/">
@@ -18,8 +20,8 @@ function App() {
                 <Menu></Menu>
               </CardProvider>
             }
-          ></Route> */}
-          {/* <Route
+          ></Route>
+          <Route
             path="/product/{product-name}"
             element={
               <CardProvider>
@@ -27,8 +29,8 @@ function App() {
               </CardProvider>
             }
           ></Route> */}
-          {/* <Route path="signUp" element={<SignUp></SignUp>}></Route>
-          <Route path="signIn" element={<SignIn></SignIn>}></Route> */}
+          <Route path="sign_up" element={<SignUp></SignUp>}></Route>
+          <Route path="sign_in" element={<SignIn></SignIn>}></Route>
         </Route>
       </Routes>
     </div>
