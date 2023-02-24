@@ -5,6 +5,130 @@
     <title>Title</title>
 </head>
 <body>
+    <h3 id="log">Day la controoler</h3>
+<!--    <form>-->
+<!--        <select name="category" id="category"></select>-->
+<!--        <button id="load-du-lieu">Show data</button>-->
+<!--        <input type="text" id="categoryId" name="categoryId">-->
+<!--        <button type="button" id="search-input">Get</button>-->
+<!--    </form>-->
+    <form method="post" name="postData" id="postData">
+        Id: <input type="text" name="categoryId" id="categoryId">
+        Name: <input type="text" name="categoryName" id="categoryName">
+        Description: <input type="text" name="description" id="description">
+        <button id="update" type="button">Update</button>
+    </form>
+    <table id="table">
+        <tr>
+            <td>p</td>
+            <td>p</td>
+            <td>p</td>
+            <td>p</td>
+        </tr>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            dropdown();
+            let array = document.querySelectorAll("#table tr");
+            var str = window.location;
+            console.log(str.href);
 
+            // $("#postData").submit(function (e) {
+            //     e.preventDefault();
+            //     loadDataPost($("#categoryId").val());
+            //     window.location = str.href + "?category_id=" + $("#categoryId").val();
+            // })
+            $("#update").click(function (e) {
+                let id = $("#categoryId").val();
+                loadDataPost($("#categoryId").val());
+
+                ChangeUrl('', '?category_id=' + id);
+            })
+            // $('#load-du-lieu').click(function(e) {
+            //     e.preventDefault();
+            //     let id = $('#categoryId').val();
+            //     loadData(id);
+            //     if (array.length != 0) {
+            //         removeChild();
+            //     }
+            // });
+            //
+            // $("#search-input").click(function (e) {
+            //     e.preventDefault();
+            //     loadDataPost();
+            // })
+
+        });
+
+
+        function loadData(id) {
+            $("#table").removeData();
+
+            $.ajax({
+                url: '/category/search/?category_id=' + id,
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (data) {
+                    for (let i = 0; i < data.length; i++) {
+                        let tr = document.createElement("tr");
+                        tr.append(`<td>${data[i].categoryName}</td>`
+                            + ` <td>${data[i].description}</td>`
+                            + ` <td>${data[i].seo}</td>`
+                            + ` <td>${data[i].categoryId}</td>`);
+                        $("#table").append(tr);
+                    }
+                },
+
+            });
+        }
+
+        function loadDataPost(categoryId) {
+            // $("#table").removeData();
+
+            $.ajax({
+                url: '/category/search?category_id=' + categoryId,
+                type: 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                },
+                done: function (data) {
+                    console.log(data)
+                },
+                error: function () {
+
+                },
+            });
+        }
+        function removeChild() {
+            let array = document.querySelectorAll("#table tr");
+            for (let i = 0; i < array.length; i++) {
+                array[i].remove();
+            }
+        }
+        function dropdown() {
+            $.ajax({method: "GET", url : "/category"})
+            .done(function (responseJson) {
+                categoryDropDown = $("#category"); // tagname select
+                $.each(responseJson, function (index, category) {
+                    $("<option>").val(category.categoryId).text(category.categoryName).appendTo(categoryDropDown);
+                });
+            })
+        }
+
+        function ChangeUrl(page, url) {
+            if (typeof (history.pushState) != "undefined") {
+                var obj = {Page: page, Url: url};
+                history.pushState(obj, obj.Page, obj.Url);
+            } else {
+                window.location.href = "homePage";
+                // alert("Browser does not support HTML5.");
+            }
+        }
+
+    </script>
 </body>
 </html>

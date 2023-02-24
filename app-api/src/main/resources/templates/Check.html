@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/check}" method="post" th:object="${form}">
+    <table>
+        <tr th:each="book, itemStat: *{categoryDTOList}">
+            <td></td>
+            <td></td>
+            <td>
+                <input type="text" id="categoryName" th:field="*{categoryDTOList[__${itemStat.index}__].categoryName}">
+            </td>
+            <td>
+                <input type="text" id="categoryId" th:field="*{categoryDTOList[__${itemStat.index}__].categoryId}">
+            </td>
+        </tr>
+        <button type="submit">Submit</button>
+    </table>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</body>
+</html>

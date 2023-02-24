@@ -1,0 +1,11 @@
+
+Q	java:S125"<This block of commented-out lines of code should be removed.(Ğ‰ôÚ
+^
+java:S1612&"AReplace this lambda with method reference 'authorDTO::addAuthor'.( â¢¬8ïª ÛÛ0
+S	java:S106'"9Replace this use of System.out or System.err by a logger.(¹ò­ƒÿÿÿÿÿ
+S	java:S1060"9Replace this use of System.out or System.err by a logger.(„³µúÿÿÿÿ
+N	java:S1061"9Replace this use of System.out or System.err by a logger.(×·ëÎ
+S	java:S1062"9Replace this use of System.out or System.err by a logger.(áµ°âúÿÿÿÿ
+Z	java:S1063"9Replace this use of System.out or System.err by a logger.(¤™ğãıÿÿÿÿ8ß™°ÛÛ0
+s
+java:S1128"QRemove this unused import 'org.springframework.web.bind.annotation.RequestParam'.(Â¬À·ùÿÿÿÿ8–Ù¦ÛÛ0

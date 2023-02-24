@@ -4,6 +4,7 @@ import com.app.api.web.appapi.entity.CategoryEntity;
 import com.app.api.web.appapi.entity.ProductEntity;
 import com.app.api.web.appapi.model.ProductDTO;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import com.app.api.web.appapi.model.CategoryDTO;
 import com.app.api.web.appapi.repository.CategoryRepository;
@@ -28,6 +29,17 @@ public class CategoryService {
   public List<CategoryDTO> getAll() {
     List<CategoryDTO> categoryDTOList = new ArrayList<>();
     List<CategoryEntity> categoryEntityList = categoryRepository.findAll();
+    for (CategoryEntity category : categoryEntityList) {
+      categoryDTOList.add(
+          toCategory(category, productRepository.findAllByCategoryId(category.getCategoryId())));
+    }
+    return categoryDTOList;
+  }
+
+  public List<CategoryDTO> getByCategoryId(Long categoryId) {
+    List<CategoryDTO> categoryDTOList = new ArrayList<>();
+    List<CategoryEntity> categoryEntityList = categoryRepository.findAllById(
+        Collections.singleton(categoryId));
     for (CategoryEntity category : categoryEntityList) {
       categoryDTOList.add(
           toCategory(category, productRepository.findAllByCategoryId(category.getCategoryId())));
