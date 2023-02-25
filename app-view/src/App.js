@@ -1,19 +1,21 @@
 import { Route, Routes } from 'react-router-dom';
+import { CardProvider } from './common/contexts/card-context';
 import Nav from './common/Nav';
 import NavAddress from './common/NavAddress';
 import HomePage from './user/view/HomePage';
+import Menu from './user/view/Menu';
 import SignIn from './user/view/SignIn';
 import SignUp from './user/view/SignUp';
 
 function App() {
   return (
     <div>
-            <NavAddress className="bg-opacity-60 bg-slate-700 text-br"></NavAddress>
+      <NavAddress className="bg-opacity-60 bg-slate-700 text-br"></NavAddress>
       <Nav></Nav>
       <Routes>
         <Route path="/">
           <Route path="/home" element={<HomePage></HomePage>}></Route>
-          {/* <Route
+          <Route
             path="/menu"
             element={
               <CardProvider>
@@ -21,6 +23,7 @@ function App() {
               </CardProvider>
             }
           ></Route>
+          {/* 
           <Route
             path="/product/{product-name}"
             element={
